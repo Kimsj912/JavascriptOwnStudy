@@ -1,3 +1,5 @@
+import BLOCKS from "./blocks.js"
+
 // DOM
 const playground = document.querySelector(".playground > ul"); //  querySelector : 해당 태그 내용들을 모두 담아 가져옴.
 
@@ -11,17 +13,10 @@ let duration = 500;
 let downInterval;
 let tempMovingItem; // 무빙 전에 잠깐 담아두는 변수
 
-const BLOCKS = {
-    tree : [ // tree라는 블록의 회전 별 모양을 담음.(direction으로 변화)
-        [[2,1],[0,1],[1,0],[1,1]], //위를 보는 모양 , 안에는 좌표값을 배열로 담음.
-        [[1,2],[0,1],[1,0],[1,1]], // 우측을 보는 모양
-        [[1,2],[0,1],[2,1],[1,1]], // 아래를 보는 모양
-        [[2,1],[1,2],[1,0],[1,1]], //  좌측을 보는 모양
-    ]
-}
+
 
 const movingItem = { // 블럭의 타입과 정보를 담은 변수
-    type : "tree", // 도형 타입
+    type : "square", // 도형 타입
     direction : 2, // 도형 방향
     top : 0, // 현재 상하 위치
     left : 0, // 현재 좌우 위치
@@ -99,6 +94,10 @@ function seizeBlock(){
 }
 
 function generateNewBlock(){
+    const blockArr = Object.entries(BLOCKS);
+    const randomIndex = Math.floor(Math.random()*blockArr.length);
+    
+    movingItem.type =  blockArr[randomIndex][0];
     movingItem.top = 0;
     movingItem.left = 3;
     movingItem.direction = 0;
@@ -108,7 +107,10 @@ function generateNewBlock(){
 
 // target이 있는지 유무 체크
 function checkEmpty(target){
-    return target && !target.classList.contains("seized");
+    if(!target || target.classList.contains("seized")){
+        return false;
+    }
+    return true;
 }
 
 function moveBlock(moveType, amount){

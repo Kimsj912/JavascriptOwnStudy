@@ -36,5 +36,20 @@ body{
 .tree{
     background: #67c23a;
 }
+.bar{
+    background: salmon;
+}
+.square{
+    background: #aaaa11;
+}
+.zee{
+    background: #8844ad;
+}
+.elLeft{
+    background: #3332aa;
+}
+.elRight{
+    background: #ee1c13;
+}
 
 
