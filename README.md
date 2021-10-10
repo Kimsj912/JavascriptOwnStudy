@@ -19,5 +19,5 @@
 ### 짬공부
 - 테트리스 만들기
   - 2021-10-10 ~ 2021-10-10
-  - https://www.youtube.com/watch?v=1lNy2mhvLFk&t=89s
-
+  - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/Tetris
+  - 참고자료 : https://www.youtube.com/watch?v=1lNy2mhvLFk&t=89s
