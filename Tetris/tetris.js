@@ -14,15 +14,15 @@ let tempMovingItem; // 무빙 전에 잠깐 담아두는 변수
 const BLOCKS = {
     tree : [ // tree라는 블록의 회전 별 모양을 담음.(direction으로 변화)
         [[2,1],[0,1],[1,0],[1,1]], //위를 보는 모양 , 안에는 좌표값을 배열로 담음.
-        [[0,1],[1,0],[1,1],[2,1]], // 우측을 보는 모양
-        [[2,1],[0,1],[1,0],[1,1]], // 아래를 보는 모양
-        [[2,1],[0,1],[1,0],[1,1]], //  좌측을 보는 모양
+        [[1,2],[0,1],[1,0],[1,1]], // 우측을 보는 모양
+        [[1,2],[0,1],[2,1],[1,1]], // 아래를 보는 모양
+        [[2,1],[1,2],[1,0],[1,1]], //  좌측을 보는 모양
     ]
 }
 
 const movingItem = { // 블럭의 타입과 정보를 담은 변수
     type : "tree", // 도형 타입
-    direction : 0, // 도형 방향
+    direction : 2, // 도형 방향
     top : 0, // 현재 상하 위치
     left : 0, // 현재 좌우 위치
 };
@@ -52,7 +52,7 @@ function prependNewLine(){
     playground.prepend(li);
 }
 
-function renderBlocks(){
+function renderBlocks(moveType = ""){
     // Destructuring : tempMovingItem의 변수들을 미리 분리해서 해당 함수에서 (const떄문) 사용할 수 있게함.
     const {type, direction, top, left} = tempMovingItem; 
     const movingBlocks = document.querySelectorAll(".moving");
@@ -60,7 +60,7 @@ function renderBlocks(){
         moving.classList.remove(type,"moving");
     })
     
-    BLOCKS[type][direction].forEach(block=>{
+    BLOCKS[type][direction].some(block=>{ // forEach는 return으로 반복문 중지를 할 수 없다.  some은 가능.
         const x = block[0] + left;
         const y = block[1] + top;
 
@@ -80,6 +80,7 @@ function renderBlocks(){
                     seizeBlock();
                 }
             },0)
+            return true; // 빈값이 있으면 굳이 나머지 3개의 칸을 다 방문할 필요없이 종료하도록 함.
         }
     })
     movingItem.left = left;
@@ -89,17 +90,35 @@ function renderBlocks(){
 
 // 블럭이 더이상 내려가지 않도록 함.(더이상 내려갈 곳이 없으면 새로운 블록 만들도록 처리)
 function seizeBlock(){
+    const movingBlocks = document.querySelectorAll(".moving");
+    movingBlocks.forEach(moving=>{
+        moving.classList.remove("moving");
+        moving.classList.add("seized");
+    })
+    generateNewBlock();
+}
 
-
+function generateNewBlock(){
+    movingItem.top = 0;
+    movingItem.left = 3;
+    movingItem.direction = 0;
+    tempMovingItem = {...movingItem};
+    renderBlocks();
 }
 
 // target이 있는지 유무 체크
 function checkEmpty(target){
-    return target;
+    return target && !target.classList.contains("seized");
 }
 
 function moveBlock(moveType, amount){
     tempMovingItem[moveType] += amount;
+    renderBlocks(moveType);
+}
+
+function changeDirection(){
+    const direction =  tempMovingItem.direction;
+    direction === 3 ? tempMovingItem.direction = 0 : tempMovingItem.direction+=1;
     renderBlocks();
 }
 
@@ -113,11 +132,11 @@ document.addEventListener("keydown", e=>{
         case "ArrowLeft" : 
             moveBlock("left",-1);
             break;
-        case "ArrowUp" : 
-            moveBlock("top",-1);
-            break;
         case "ArrowDown" : 
             moveBlock("top",1);
+            break;
+        case "ArrowUp" : 
+            changeDirection();
             break;
         default:
             console.log("default");
