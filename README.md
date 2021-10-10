@@ -16,3 +16,8 @@
   - 2021-10-05 ~ 
   - https://nomadcoders.co/javascript-for-beginners/lobby
 
+### 짬공부
+- 테트리스 만들기
+  - 2021-10-10 ~ 2021-10-10
+  - https://www.youtube.com/watch?v=1lNy2mhvLFk&t=89s
+
