@@ -2,7 +2,9 @@ import BLOCKS from "./blocks.js"
 
 // DOM
 const playground = document.querySelector(".playground > ul"); //  querySelector : 해당 태그 내용들을 모두 담아 가져옴.
-
+const gameText = document.querySelector(".game-text");
+const scoreDisplay = document.querySelector(".score");
+const restartBtn = document.querySelector(".game-text > button");
 // Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
@@ -16,7 +18,7 @@ let tempMovingItem; // 무빙 전에 잠깐 담아두는 변수
 
 
 const movingItem = { // 블럭의 타입과 정보를 담은 변수
-    type : "square", // 도형 타입
+    type : "", // 도형 타입
     direction : 2, // 도형 방향
     top : 0, // 현재 상하 위치
     left : 0, // 현재 좌우 위치
@@ -33,7 +35,7 @@ function init(){ // 처음 시작될 때 호출되는 함수
     for(let i = 0 ; i<GAME_ROWS ;i++){
         prependNewLine();
     }
-    renderBlocks();
+    generateNewBlock();
 }
 
 function prependNewLine(){
@@ -69,8 +71,16 @@ function renderBlocks(moveType = ""){
         } else{
             // 좌표를 다시 원상태로 옮기고 재귀함수 부름.
             tempMovingItem = { ...movingItem};
+
+            if(moveType==='retry')
+            
+            if(moveType === 'retry'){
+                clearInterval(downInterval);
+                showGameOverText();
+            }
+
             setTimeout(()=>{ //주어진 일을 끝내고 부르도록 순서 변경(call stack에러 수정)
-                renderBlocks(); 
+                renderBlocks('retry'); 
                 if(moveType === "top"){
                     seizeBlock();
                 }
@@ -83,6 +93,10 @@ function renderBlocks(moveType = ""){
     movingItem.direction = direction;
 }
 
+function showGameOverText(){
+    gameText.style.display = "flex";
+}
+
 // 블럭이 더이상 내려가지 않도록 함.(더이상 내려갈 곳이 없으면 새로운 블록 만들도록 처리)
 function seizeBlock(){
     const movingBlocks = document.querySelectorAll(".moving");
@@ -90,10 +104,33 @@ function seizeBlock(){
         moving.classList.remove("moving");
         moving.classList.add("seized");
     })
+    checkMatch();
+}
+function checkMatch(){
+    const childNodes = playground.childNodes;
+    childNodes.forEach(child=>{
+        let matched = true;
+        child.childNodes[0].childNodes.forEach(li=>{
+            if(!li.classList.contains("seized")){ // 한줄에 seized된 칸이 하나라도 있으면 그 칸이 다 채워진게 아님..(seized는 안착했을 때니까 아직 떨어지고 있거나 그 줄에 빈칸이 있는 것.)
+                matched=false;
+            }
+        })
+        if(matched){
+            child.remove();
+            prependNewLine();
+            score+=100;
+            scoreDisplay.innerText = score;
+        }
+    })
     generateNewBlock();
 }
-
 function generateNewBlock(){
+
+    clearInterval(downInterval);
+    downInterval = setInterval(()=>{
+        moveBlock('top',1);
+    }, duration);
+
     const blockArr = Object.entries(BLOCKS);
     const randomIndex = Math.floor(Math.random()*blockArr.length);
     
@@ -124,6 +161,14 @@ function changeDirection(){
     renderBlocks();
 }
 
+function dropBlock(){
+    clearInterval(downInterval);
+    downInterval = setInterval(()=>{
+        moveBlock("top",1);
+    },10);
+
+}
+
 // Event Handling
 document.addEventListener("keydown", e=>{
     // Switch는 ===을 사용함. (값과 데이터타입까지 동일해야함.)
@@ -140,8 +185,17 @@ document.addEventListener("keydown", e=>{
         case "ArrowUp" : 
             changeDirection();
             break;
+        case " ":
+            dropBlock();
+            break;
         default:
             console.log("default");
             break;
     }
+});
+
+restartBtn.addEventListener("click",()=>{
+    playground.innerHTML="";
+    gameText.style.display="none";
+    init();
 })
