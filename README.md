@@ -12,19 +12,21 @@
 - 2021-10-05 ~
 
 ### 커리 과정
-- 전체 순서
-  1. 바닐라 JS로 크롬 앱 만들기
+- 예상 순서
+  1. 노마드 코더 - 바닐라 JS로 크롬 앱 만들기 
+    - 2021-10-18 ~
+  2. 코딩 애플 - 리액트 강의
+  3. 노마드 코더 - React js로 영화 웹 서비스 만들기
+  4. 노마드 코더 - 트위터 클론 코딩
 
 
 - 내용 (괜찮아보이는 것 있으면 점차 추가할 것)
   - 노마드 코더
-    - 2021-10-05 ~ 
     - 바닐라 JS로 크롬 앱 만들기 : https://nomadcoders.co/javascript-for-beginners/lobby
     - React JS로 영화 웹 서비스 만들기 : https://nomadcoders.co/react-fundamentals
     - 트위터 클론 코딩 : https://nomadcoders.co/nwitter
   - 코딩 애플
-    - 2021-10-18 ~ 
-    - 리액트 관련 강의 영상 : https://www.youtube.com/watch?v=nahwuaXmgt8
+    - 리액트 강의 : https://www.youtube.com/watch?v=nahwuaXmgt8
     -  
 
 ### 짬공부
