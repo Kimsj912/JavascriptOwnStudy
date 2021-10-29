@@ -5,6 +5,7 @@ const loginInput = loginForm.querySelector("#login-form input");
 const greeting = document.querySelector("#greeting");
 
 const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
 
 function onLoginSubmit(event){
     // initialize setting
@@ -15,8 +16,22 @@ function onLoginSubmit(event){
     
     // get username and  show greeting message
     const username = loginInput.value;
-    localStorage.setItem("username",username);
-    greeting.innerText=`Hello ${username}`;
-    greeting.classList.remove(HIDDEN_CLASSNAME);
+    localStorage.setItem(USERNAME_KEY,username);
+    paintGreeting(username);
 }
-loginForm.addEventListener("submit",onLoginSubmit);
+
+function paintGreeting(username){
+    // show the greeting message
+    greeting.classList.remove(HIDDEN_CLASSNAME);
+    greeting.innerText=`Hello ${username}`;
+}
+
+// Determine visible elements based on user name
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+if(savedUsername===null) {
+    // show the form
+    loginForm.classList.remove(HIDDEN_CLASSNAME);
+    loginForm.addEventListener("submit",onLoginSubmit);
+} else{
+    paintGreeting(savedUsername);
+}
