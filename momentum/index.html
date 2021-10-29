@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Momentum</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./app.js"></script>
 </head>
 <body>
-    
+    <form id="login-form" class = "hidden"> <!--form 안에 있어야 input의 유효성 검사 관련 프로퍼티가 작동함.-->
+        <input required maxlength="15" type="text" placeholder="what is your name?"/>
+        <button>Log In</button>
+    </form>
+    <a href="https://nomadcoders.co">Go to courses</a>
+
+
+        <script src="./app.js"></script>
+        
 </body>
 </html>
