@@ -15,6 +15,7 @@ function onLoginSubmit(event){
     
     // get username and  show greeting message
     const username = loginInput.value;
+    localStorage.setItem("username",username);
     greeting.innerText=`Hello ${username}`;
     greeting.classList.remove(HIDDEN_CLASSNAME);
 }
