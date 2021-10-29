@@ -1,13 +1,11 @@
+// github으로 날짜에 맞춰 업로드된 거 따라가면됨. 
+// 이제 주석으로 안남기고 그냥 깃헙에 올린 뒤 지울거임.
 const loginForm = document.querySelector("#login-form");
 const loginInput = loginForm.querySelector("input");
 const loginButton = loginForm.querySelector("button");
 const link = document.querySelector("a");
 
 function onLoginSubmit(){
-    // html을 이용해 막았음.
-    // const username = loginInput.value;
-    // if(username=="") alert("please write your name");
-    // else if(username.length>15) alert("your name is too long.");
 }
 loginButton.addEventListener("submit",onLoginSubmit);
 
