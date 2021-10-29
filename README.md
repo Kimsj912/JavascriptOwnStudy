@@ -11,7 +11,7 @@
 ### 기간
 - 2021-10-05 ~
 
-### 커리 과정
+### 이론 공부
 - 예상 순서
   1. 노마드 코더 - 바닐라 JS로 크롬 앱 만들기 
     - 2021-10-18 ~
@@ -27,10 +27,15 @@
     - 트위터 클론 코딩 : https://nomadcoders.co/nwitter
   - 코딩 애플
     - 리액트 강의 : https://www.youtube.com/watch?v=nahwuaXmgt8
-    -  
 
 ### 짬공부
 - 테트리스 만들기
   - 2021-10-10 ~ 2021-10-10
   - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/Tetris
   - 참고자료 : https://www.youtube.com/watch?v=1lNy2mhvLFk&t=89s
+
+- 예정
+  - 제이쿼리로 스타크래프트만들기 : https://www.youtube.com/watch?v=z2Cu7gPMq0w&list=LL&index=1
+  - 반응형 웹 + 공튕기기
+    - [https://www.youtube.com/watch?v=X91jsJyZofw&list=LL&index=11](https://www.youtube.com/watch?v=X91jsJyZofw&list=LL&index=11)
+    - [https://www.youtube.com/watch?v=sLCiI6d5vTM&list=LL&index=20](https://www.youtube.com/watch?v=sLCiI6d5vTM&list=LL&index=20)
