@@ -3,19 +3,24 @@ import BLOCKS from "./blocks.js"
 // DOM
 const playground = document.querySelector(".playground > ul"); //  querySelector : 해당 태그 내용들을 모두 담아 가져옴.
 const gameText = document.querySelector(".game-text");
-const scoreDisplay = document.querySelector(".score");
-const restartBtn = document.querySelector(".game-text > button");
+const scoreDisplay = document.querySelector("#score");
+const timer = document.querySelector("#timer");
+const startBtn = document.querySelector(".startBtn");
+
 // Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
+const hiddenClassText = "hidden";
+const INITIAL_TIME = "00:00"
 
 // Vairables
 let score = 0;
 let duration = 500;
 let downInterval;
 let tempMovingItem; // 무빙 전에 잠깐 담아두는 변수
-
-
+let isPlay = false;
+let time = 0;
+let timerInterval;
 
 const movingItem = { // 블럭의 타입과 정보를 담은 변수
     type : "", // 도형 타입
@@ -24,7 +29,7 @@ const movingItem = { // 블럭의 타입과 정보를 담은 변수
     left : 0, // 현재 좌우 위치
 };
 
-
+// Constructor
 init();
 
 // functions
@@ -32,12 +37,43 @@ function init(){ // 처음 시작될 때 호출되는 함수
     // spread Operator ({... 변수명}) : movingItem의 값만 가져오기 때문에 movingItem이 변경되어도 tempMovingItem은 영향X
     tempMovingItem = {...movingItem}; 
 
-    for(let i = 0 ; i<GAME_ROWS ;i++){
-        prependNewLine();
-    }
+    // make sheet
+    for(let i = 0 ; i<GAME_ROWS ;i++) prependNewLine();
+}
+
+function play(){
+    isPlay=true;
+    timerInterval = setInterval(()=>{
+        updateTimer();
+    }, 1000);
     generateNewBlock();
 }
 
+function resetTimer(){
+    time = 0;
+    clearInterval(timerInterval);
+    timer.innerText=INITIAL_TIME;
+}
+
+function gameOver(){
+    clearInterval(downInterval);
+    resetTimer();
+    isPlay=false;
+}
+
+// timer
+function updateTimer(){
+    if(isPlay){
+        time++;
+        let min = Math.round(time/60);
+        let sec = Math.round(time - (time/60));
+        let minText = min.toString().padStart(2,"0");
+        let secText = sec.toString().padStart(2,"0");
+        timer.innerText = minText+":"+secText;
+    }
+}
+
+// 한줄을 완성했을때 그 줄을 다시 만드는 함수
 function prependNewLine(){
     const li = document.createElement("li"); // createElement : 해당 태그를 만듦
     const ul = document.createElement("ul");
@@ -71,12 +107,10 @@ function renderBlocks(moveType = ""){
         } else{
             // 좌표를 다시 원상태로 옮기고 재귀함수 부름.
             tempMovingItem = { ...movingItem};
-
-            if(moveType==='retry')
             
+            // 종료
             if(moveType === 'retry'){
-                clearInterval(downInterval);
-                showGameOverText();
+                gameOver();
             }
 
             setTimeout(()=>{ //주어진 일을 끝내고 부르도록 순서 변경(call stack에러 수정)
@@ -91,10 +125,6 @@ function renderBlocks(moveType = ""){
     movingItem.left = left;
     movingItem.top = top;
     movingItem.direction = direction;
-}
-
-function showGameOverText(){
-    gameText.style.display = "flex";
 }
 
 // 블럭이 더이상 내려가지 않도록 함.(더이상 내려갈 곳이 없으면 새로운 블록 만들도록 처리)
@@ -150,6 +180,7 @@ function checkEmpty(target){
     return true;
 }
 
+// block moving
 function moveBlock(moveType, amount){
     tempMovingItem[moveType] += amount;
     renderBlocks(moveType);
@@ -194,8 +225,14 @@ document.addEventListener("keydown", e=>{
     }
 });
 
-restartBtn.addEventListener("click",()=>{
+
+
+startBtn.addEventListener("click",()=>{
     playground.innerHTML="";
-    gameText.style.display="none";
+    startBtn.innerText = "다시시작"
+    resetTimer();
+
     init();
+    play();
 })
+

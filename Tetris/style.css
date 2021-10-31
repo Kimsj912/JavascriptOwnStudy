@@ -9,9 +9,59 @@ ul{
 
 body{
     height: 100%;
-    overflow:hidden;
+    display: flex;
+    justify-content: center;
 }
-.game-text{
+/* basic style */
+.wrapper{
+    text-align: center;
+    width: 250px;
+    padding-top: 1em;
+
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+.game_info{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 10px;
+}
+.game_info > div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.game_info > button{
+    width: 100%;
+    margin: 0.8rem 0 1rem 0;
+}
+.gameinfo_text{
+    text-align: start;
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.gameinfo_value{
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.startBtn{
+    padding : 0.5rem 1rem;
+    background-color : salmon;
+    color: white;
+    border : none;
+    border-radius: 1em;
+    cursor : pointer;
+    text-align: center;
+
+    width :100px;
+    margin-bottom: 1rem;
+}
+/* situation style */
+.hidden {
+    display: none;
+}
+/* restart style */
+/* .game-text{
     display: flex;
     justify-content: center;
     text-align: center;
@@ -31,12 +81,8 @@ body{
     background: salmon;
     border : none;
     cursor : pointer;
-}
-.score{
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 2rem;
-}
+} */
+/* playground style */
 .playground > ul{
     border : 1px solid #333;
     width : 250px;
@@ -54,6 +100,8 @@ body{
     height:25px;
     outline: 1px solid #ccc;
 }
+
+/* blocks Style */
 .tree{
     background: #67c23a;
 }
