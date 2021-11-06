@@ -5,7 +5,7 @@ const GAME_END = "게임종료";
 const GAME_LOADING_KOR = "게임 로딩중..";
 const GAME_LOADIND_ENG = "loading";
 const INITIAL_WORDDISPLAY = "PRESS GAME START";
-const FINAL_WORDDISPLAY = "Game-End!";
+const FINAL_WORDDISPLAY = "Game-End !  your score is ";
 const  GAME_TIME = 5;
 const BLUE_HEART = "💙";
 const BLACK_HEART ="🖤";
@@ -26,7 +26,7 @@ let words = [];
 let correctNum = 0; // 맞은 개수
 let hearts = HEART_COUNT; // 남은 하트수
 let score = 0; // 실제 점수
-let time = 9; // 시간
+let time = 5; // 시간
 let isPlaying= false; // 게임 중인지 여부
 let timeInterval; // 남은 시간 인터벌
 let checkInterval; //  시간과 게임중 여부를 이용해 상태를 파악하는 checkStatus를 갱신해주는 인터벌
@@ -69,6 +69,7 @@ function reinit(){
     // time
     time = 0;
     timeDisplay.innerText = time;
+    clearInterval(timeInterval);
     // score
     score = 0;
     scoreDisplay.innerText = score;
@@ -76,6 +77,9 @@ function reinit(){
     heartBox.innerHTML="";
     hearts = HEART_COUNT;
     makeHeart();
+    // check statuc interval
+    clearInterval(checkInterval);
+
 }
 
 // check status
@@ -92,10 +96,9 @@ function checkStatus(){
             // finalize time
             clearInterval(timeInterval);
             // finalize word display
-            wordDisplay.innerText = FINAL_WORDDISPLAY;
+            wordDisplay.innerText = FINAL_WORDDISPLAY+score;
             // finalize button
-            let value = GAME_END+score;
-            button.innerText = value;
+            buttonChange(GAME_END);
             // quit checkInterval
             clearInterval(checkInterval);
         } else{
