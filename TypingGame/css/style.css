@@ -31,15 +31,30 @@ body{
     width:300px;
 }
 .game-info{
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
     width: 200px;
 }
-.tome .score{
+.time .score{
     font: size 30px;
 }
+.heart-box{
+    width:200px;
+    height: 40px;
+    margin-top: 1rem;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.heart-box > .heart-bar{
+    font-size: x-large;
+
+}
+
 button{
     width:200px;
     height: 35px;
@@ -52,4 +67,7 @@ button{
 .loading{
     background: #ccc;
     cursor: not-allowed;
+}
+.restartBtn{
+    margin-top: 1rem;
 }
