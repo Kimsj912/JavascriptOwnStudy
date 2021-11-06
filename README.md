@@ -32,6 +32,11 @@
   - 2021-10-10 ~ 2021-10-10
   - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/Tetris
   - 참고자료 : https://www.youtube.com/watch?v=1lNy2mhvLFk&t=89s
+- 타이핑 마스터 만들기
+  - 2021-11-06 
+  - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/TypingGame
+  - 참고자료 : https://www.youtube.com/watch?v=_CsGSE5gwTA
+  - 영상 : https://youtu.be/qZq28G15m5A
 
 - 예정
   - 제이쿼리로 스타크래프트만들기 : https://www.youtube.com/watch?v=z2Cu7gPMq0w&list=LL&index=1
