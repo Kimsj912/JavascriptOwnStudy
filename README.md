@@ -16,25 +16,19 @@
 - 예상 순서
   1. 노마드 코더 - 바닐라 JS로 크롬 앱 만들기 
     - 2021-10-18 ~ 2021-11-07
-  <br>이후는 같이하는 자바스크립트에서 진행 https://github.com/Kimsj912/javascriptWithStudy </br>
-
-
-- 내용 (괜찮아보이는 것 있으면 점차 추가할 것)
-  - 노마드 코더
-    - 바닐라 JS로 크롬 앱 만들기 : https://nomadcoders.co/javascript-for-beginners/lobby
-    - React JS로 영화 웹 서비스 만들기 : https://nomadcoders.co/react-fundamentals
-    - 트위터 클론 코딩 : https://nomadcoders.co/nwitter
-  - 코딩 애플
-    - 리액트 강의 : https://www.youtube.com/watch?v=nahwuaXmgt8
+  2. 인프런 - 자바스크립트 중고급 : 근본 핵심 이해
+    - 2021-11-09 ~ 2021-11-21
 
 ### 짬공부
 - 테트리스 만들기
-  - 2021-10-10 ~ 2021-10-10
+  - 2021-10-10 
   - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/Tetris
   - 참고자료 : https://www.youtube.com/watch?v=1lNy2mhvLFk&t=89s
 
-- 예정
-  - 제이쿼리로 스타크래프트만들기 : https://www.youtube.com/watch?v=z2Cu7gPMq0w&list=LL&index=1
-  - 반응형 웹 + 공튕기기
-    - [https://www.youtube.com/watch?v=X91jsJyZofw&list=LL&index=11](https://www.youtube.com/watch?v=X91jsJyZofw&list=LL&index=11)
-    - [https://www.youtube.com/watch?v=sLCiI6d5vTM&list=LL&index=20](https://www.youtube.com/watch?v=sLCiI6d5vTM&list=LL&index=20)
+- 타이핑 마스터 만들기
+  - 2021-11-06 
+  - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/TypingGame
+  - 참고자료 : https://www.youtube.com/watch?v=_CsGSE5gwTA
+  - 영상 : https://youtu.be/qZq28G15m5A
+
+
