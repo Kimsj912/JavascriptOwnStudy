@@ -31,4 +31,9 @@
   - 참고자료 : https://www.youtube.com/watch?v=_CsGSE5gwTA
   - 영상 : https://youtu.be/qZq28G15m5A
 
+- 채팅앱 만들기
+  - 2021-11-13 ~ 2021-11-14
+  - Github 위치 : https://github.com/Kimsj912/Javascript_OwnStudy/tree/main/chat
+  - 참고자료 : https://www.youtube.com/watch?v=UoKoPP91Qx0
+  - 영상 : https://youtu.be/_F8LxnZl5i4
 
