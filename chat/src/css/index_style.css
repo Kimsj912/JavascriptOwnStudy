@@ -12,6 +12,7 @@ body{
     place-items: center;
     min-height: 100vh;
 }
+
 .container{
     height: 400px;
     width:300px;
@@ -24,8 +25,8 @@ body{
 
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-
 }
+
 .inner_container{
     width: 100%;
     font-size: larger;
@@ -52,9 +53,8 @@ body{
     font-size: medium;
     font-weight: bold;
     color: #49351b;
-    
-
 }
+
 #nickname{
     width: 80%;
     margin: 1rem;
@@ -64,8 +64,8 @@ body{
     border-radius: 1rem;
 
     text-align: center;
-
 }
+
 button {
     flex: 1;
     width: 80%;

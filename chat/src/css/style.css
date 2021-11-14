@@ -2,10 +2,10 @@
     margin:0;
     padding:0;
 }
-
 html, body{
     height : 100%;
 }
+
 .wrapper{
     height: 100%;
     width:100%;
@@ -31,32 +31,6 @@ html, body{
     background-color: #b2c7d9;
     overflow-y: scroll;
 }
-.input-container{
-    flex: 2;
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-}
-.input-container span{
-    display:flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding : 0.3rem;
-    width: 100%;
-}
-.chatting-input{
-    font-size: 12px;
-    height: 100%;
-    flex: 8;
-    border: none;
-}
-.send-button{
-    flex:1;
-    background-color: #ffeb33;
-    border: none;
-    height: 100%;
-    border-radius: 3px;
-}
 .chatting-list li {
     width:90%;
     padding:0.3rem;
@@ -65,6 +39,7 @@ html, body{
     align-items: flex-end;
     margin-top: 0.5rem;
 }
+
 .profile{
     display: flex;
     flex-direction: column; 
@@ -102,4 +77,30 @@ html, body{
 }
 .receive .message{
     background: #fff;
+}
+.input-container{
+    flex: 2;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+}
+.input-container span{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding : 0.3rem;
+    width: 100%;
+}
+.chatting-input{
+    font-size: 12px;
+    height: 100%;
+    flex: 8;
+    border: none;
+}
+.send-button{
+    flex:1;
+    background-color: #ffeb33;
+    border: none;
+    height: 100%;
+    border-radius: 3px;
 }
