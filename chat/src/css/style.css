@@ -119,7 +119,7 @@ html, body{
     display: flex;
     justify-content: stretch;
     align-items: stretch;
-    background-color: #b2c7d9;
+    background-color: white;
 }
 .input-container span{
     display:flex;

@@ -36,6 +36,7 @@ socket.on("chatting",(data)=>{
     const item = new LiModel(name, msg, time);
     item.makeLi();
     displayContainer.scrollTo(0,displayContainer.scrollHeight);
+    changeBubbleColor();
 })
 
 // Obj - li tag model about chatting block
@@ -67,42 +68,43 @@ function LiModel(name, msg, time){
     }
 }
 
-
-function changeIntoDark(){
-    colorBtn.classList.add(DarkClassList);
-    colorBtn.innerText = DarkText;
-
-    userContainer.classList.add(DarkClassList);
-    nickname.classList.add(DarkClassList);
-
-    displayContainer.classList.add(DarkClassList);
-    document.querySelector(".user").classList.add(DarkClassList);
-    document.querySelector(".time").classList.add(DarkClassList);
-
-    chattingSpan.classList.add(DarkClassList);
-    chattingInput.classList.add(DarkClassList);
+// chage  into dark mode
+function darkObserver(){
+    // user container    
+    userContainer.classList.toggle(DarkClassList);
+    colorBtn.classList.toggle(DarkClassList);
+    colorBtn.innerText = colorBtn.innerText === WhiteText ? DarkText : WhiteText;
+    nickname.classList.toggle(DarkClassList);
+    // display container
+    displayContainer.classList.toggle(DarkClassList);
+    changeBubbleColor();
+    // chatting container
+    chattingSpan.classList.toggle(DarkClassList);
+    chattingInput.classList.toggle(DarkClassList);
+}
+function changeBubbleColor(){
+    let users = document.querySelectorAll(".user");
+    let times = document.querySelectorAll(".time");
+    if (colorBtn.innerText === DarkText) {
+        for(let i = 0; i < users.length; i++) users[i].classList.add(DarkClassList);
+        for(let i = 0; i < times.length; i++) times[i].classList.add(DarkClassList);
+    } else{
+        for(let i = 0; i < users.length; i++) users[i].classList.remove(DarkClassList);
+        for(let i = 0; i < times.length; i++) times[i].classList.remove(DarkClassList);
+    }
 }
 
-function changeIntoWhite(){
-    colorBtn.classList.remove(DarkClassList);
-    colorBtn.innerText = WhiteText;
-
-    userContainer.classList.remove(DarkClassList);
-    nickname.classList.remove(DarkClassList);
-
-    displayContainer.classList.remove(DarkClassList);
-    document.querySelector(".profile .user").classList.remove(DarkClassList);
-    document.querySelector(".time").classList.remove(DarkClassList);
-
-    chattingSpan.classList.remove(DarkClassList);
-    chattingInput.classList.remove(DarkClassList);
+// Change Nickname
+function changeNickname(){
+    var input = prompt("새로운 닉네임을 입력하세요",nickname.innerText);
+    if(input===null||input=="") alert("아무것도 입력되지 않았습니다.");
+    else nickname.innerText = input;
 }
+
 
 // Event
+nickname.addEventListener("click",changeNickname);
 sendButton.addEventListener("click",send);
 chatInput.addEventListener("keypress",(e)=>{ if(e.keyCode===13) send(); });
-colorBtn.addEventListener("click",()=>{
-    if(colorBtn.classList.contains(DarkClassList)) changeIntoWhite();
-    else changeIntoDark();
-})
+colorBtn.addEventListener("click",darkObserver);
 
