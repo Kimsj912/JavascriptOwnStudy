@@ -74,7 +74,10 @@ function changeIntoDark(){
 
     userContainer.classList.add(DarkClassList);
     nickname.classList.add(DarkClassList);
+
     displayContainer.classList.add(DarkClassList);
+    document.querySelector(".user").classList.add(DarkClassList);
+    document.querySelector(".time").classList.add(DarkClassList);
 
     chattingSpan.classList.add(DarkClassList);
     chattingInput.classList.add(DarkClassList);
@@ -86,7 +89,10 @@ function changeIntoWhite(){
 
     userContainer.classList.remove(DarkClassList);
     nickname.classList.remove(DarkClassList);
+
     displayContainer.classList.remove(DarkClassList);
+    document.querySelector(".profile .user").classList.remove(DarkClassList);
+    document.querySelector(".time").classList.remove(DarkClassList);
 
     chattingSpan.classList.remove(DarkClassList);
     chattingInput.classList.remove(DarkClassList);

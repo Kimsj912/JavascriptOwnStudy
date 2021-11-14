@@ -17,7 +17,7 @@ html, body{
     flex:1;
     background-color: #a9bdce;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     padding: 0.5rem;
 }
@@ -78,6 +78,10 @@ html, body{
     font-size: 10px;
     margin-bottom: 0.3rem;
 }
+.profile .user[class*="Dark"]{
+    color: white;
+}
+
 .profile .image{
     border-radius: 50%;
     object-fit: cover;
@@ -96,6 +100,9 @@ html, body{
     font-size:10px;
     margin: 0 5px;
 }
+.time[class*="Dark"]{
+    color: white;
+}
 .sent{
     flex-direction: row-reverse;
     float: right;
@@ -106,12 +113,13 @@ html, body{
 .receive .message{
     background: #fff;
 }
+
 .input-container{
     flex: 2;
     display: flex;
     justify-content: stretch;
     align-items: stretch;
-    background-color: #a9bdce;
+    background-color: #b2c7d9;
 }
 .input-container span{
     display:flex;
