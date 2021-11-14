@@ -1,6 +1,10 @@
 "use strict" // js의 오류를 줄여나가는 방향의 일환?
 
-// Constants
+// Announce Constants
+const PROMPT_TEXT = "새로운 닉네임을 입력하세요";
+const PROMPT_NTH_INPUT = "아무것도 입력되지 않았습니다.";
+
+// View Constants
 const WhiteText = "W";
 const DarkText = "D";
 const DarkClassList = "Dark";
@@ -8,7 +12,6 @@ const DarkClassList = "Dark";
 // Attribute
 const socket = io(); // socket io불러오기
 const nickname = document.querySelector("#nickname"); 
-//  -> pug 쓰니까 처음 선언해둔건 변경후를 반영하지않아서 적용이 안됨. -> 쓸떄마다 불러서 사용함. (css 변경 제외)
 const userContainer = document.querySelector(".user-container");
 const colorBtn = document.querySelector("#colorPalette");
 
@@ -20,22 +23,28 @@ const chattingSpan = document.querySelector(".input-container span");
 const chattingInput = document.querySelector(".chatting-input");
 const sendButton = document.querySelector(".send-button");
 
-
 // send msg data to server
 function send(){
     const param = {
         name : document.querySelector("#nickname").innerText,
         msg : chatInput.value,
     }
-    socket.emit("chatting", param); // 채널아이디, 내용 객체를 담아 소켓으로 보냄.
+    // 채널아이디, 내용 객체를 담아 소켓으로 보냄.
+    socket.emit("chatting", param); 
+    //입력창 초기화
+    chattingInput.value = ""; 
 }
 
 //  get  msgs from server
 socket.on("chatting",(data)=>{
+    // destructuring data value
     const {name, msg, time} = data;
+    // make li model 
     const item = new LiModel(name, msg, time);
     item.makeLi();
+    // scroll to bottom
     displayContainer.scrollTo(0,displayContainer.scrollHeight);
+    // change text color
     changeBubbleColor();
 })
 
@@ -82,9 +91,13 @@ function darkObserver(){
     chattingSpan.classList.toggle(DarkClassList);
     chattingInput.classList.toggle(DarkClassList);
 }
+
+// 챗보낸 시간과 유저명 색 변경  (토글로하면 새로만들어진 노드까지 변경되지 않아 뒤죽박죽됨.)
 function changeBubbleColor(){
+    // get 유저명 , 보낸시간
     let users = document.querySelectorAll(".user");
     let times = document.querySelectorAll(".time");
+    // 현재 다크모드라면 -> 다크 스타일로 / 아니라면 -> 기본스타일로
     if (colorBtn.innerText === DarkText) {
         for(let i = 0; i < users.length; i++) users[i].classList.add(DarkClassList);
         for(let i = 0; i < times.length; i++) times[i].classList.add(DarkClassList);
@@ -96,15 +109,13 @@ function changeBubbleColor(){
 
 // Change Nickname
 function changeNickname(){
-    var input = prompt("새로운 닉네임을 입력하세요",nickname.innerText);
-    if(input===null||input=="") alert("아무것도 입력되지 않았습니다.");
+    var input = prompt(PROMPT_TEXT,nickname.innerText);
+    if(input===null||input=="") alert(PROMPT_NTH_INPUT);
     else nickname.innerText = input;
 }
-
 
 // Event
 nickname.addEventListener("click",changeNickname);
 sendButton.addEventListener("click",send);
 chatInput.addEventListener("keypress",(e)=>{ if(e.keyCode===13) send(); });
 colorBtn.addEventListener("click",darkObserver);
-
