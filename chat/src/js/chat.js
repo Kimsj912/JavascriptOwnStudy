@@ -1,13 +1,25 @@
 "use strict" // js의 오류를 줄여나가는 방향의 일환?
 
+// Constants
+const WhiteText = "W";
+const DarkText = "D";
+const DarkClassList = "Dark";
+
 // Attribute
 const socket = io(); // socket io불러오기
-// const nickname = document.querySelector("#nickname"); 
-//  -> pug 쓰니까 처음 선언해둔건 변경후를 반영하지않아서 적용이 안됨. -> 쓸떄마다 불러서 사용함.
+const nickname = document.querySelector("#nickname"); 
+//  -> pug 쓰니까 처음 선언해둔건 변경후를 반영하지않아서 적용이 안됨. -> 쓸떄마다 불러서 사용함. (css 변경 제외)
+const userContainer = document.querySelector(".user-container");
+const colorBtn = document.querySelector("#colorPalette");
+
+const displayContainer = document.querySelector(".display-container");
 const chatList = document.querySelector(".chatting-list");
 const chatInput = document.querySelector(".chatting-input");
+
+const chattingSpan = document.querySelector(".input-container span");
+const chattingInput = document.querySelector(".chatting-input");
 const sendButton = document.querySelector(".send-button");
-const displayContainer = document.querySelector(".display-container");
+
 
 // send msg data to server
 function send(){
@@ -55,6 +67,36 @@ function LiModel(name, msg, time){
     }
 }
 
+
+function changeIntoDark(){
+    colorBtn.classList.add(DarkClassList);
+    colorBtn.innerText = DarkText;
+
+    userContainer.classList.add(DarkClassList);
+    nickname.classList.add(DarkClassList);
+    displayContainer.classList.add(DarkClassList);
+
+    chattingSpan.classList.add(DarkClassList);
+    chattingInput.classList.add(DarkClassList);
+}
+
+function changeIntoWhite(){
+    colorBtn.classList.remove(DarkClassList);
+    colorBtn.innerText = WhiteText;
+
+    userContainer.classList.remove(DarkClassList);
+    nickname.classList.remove(DarkClassList);
+    displayContainer.classList.remove(DarkClassList);
+
+    chattingSpan.classList.remove(DarkClassList);
+    chattingInput.classList.remove(DarkClassList);
+}
+
 // Event
 sendButton.addEventListener("click",send);
 chatInput.addEventListener("keypress",(e)=>{ if(e.keyCode===13) send(); });
+colorBtn.addEventListener("click",()=>{
+    if(colorBtn.classList.contains(DarkClassList)) changeIntoWhite();
+    else changeIntoDark();
+})
+

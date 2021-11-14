@@ -42,7 +42,6 @@ app.get('/chat', (req,res)=>{
 //  get data from io(chat.js)
 io.on("connection",(socket)=>{
     socket.on("chatting", (data)=>{
-        console.log("TEST");
         const {name, msg} = data;
         io.emit("chatting", {name, msg, time : moment(new Date()).format("h:mm A") });
     }); // 채팅아이디, 사용함수
